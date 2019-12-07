@@ -1,0 +1,4 @@
+<ul>
+    <li *ngFor="let item of movie">{{ item.name }} {{ item.inStock }} {{ item.price }}</li>
+</ul>
+<div *ngIf="totalPrice && totalPrice > 5">{{totalPrice}}</div>
