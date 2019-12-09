@@ -1,0 +1,16 @@
+nav {
+    width: 30rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav > * {
+    padding: .5rem;
+    text-decoration: none;
+}
+
+nav > *:hover {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}

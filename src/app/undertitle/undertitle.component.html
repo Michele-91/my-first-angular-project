@@ -1,3 +1,4 @@
 <p>{{ underTitle }}</p>
-<app-button (hideShow)="displayTable($event)"></app-button>
-<app-list [movie]="movie"></app-list>
+<app-button (hideShow)="toggleTable($event)"></app-button>
+<app-list [movie]="movieList"></app-list>
+<button (click)="returnToHome()">Homepage</button>

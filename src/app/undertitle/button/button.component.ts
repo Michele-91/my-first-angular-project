@@ -12,7 +12,7 @@ export class ButtonComponent implements OnInit {
   constructor() { }
 
   @Output()
-  hideShow = new EventEmitter();
+  hideShow = new EventEmitter<boolean>();
 
   ngOnInit() {
   }
