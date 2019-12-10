@@ -7,9 +7,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RandomComponent } from './random/random.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './menu/menu.component';
-// import { ModHomepageComponent } from './mod-homepage/mod-homepage.component';
-
-
 
 @NgModule({
   declarations: [
@@ -17,7 +14,6 @@ import { MenuComponent } from './menu/menu.component';
     HomepageComponent,
     RandomComponent,
     MenuComponent,
-    // ModHomepageComponent
   ],
   imports: [
     BrowserModule,

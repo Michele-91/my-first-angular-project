@@ -9,12 +9,31 @@ import { Item } from '../../entities/Item';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  private _movie: Item[];
 
+  totalPrice: number;
+
+  get movie(): Item[] {
+    return this._movie;
+  }
+  
   @Input()
-  movie: Item[];
-
+  set movie(value: Item[]) {
+    this._movie = value;
+    if(value) {
+      this.totalPrice = this.movie.map((item) => item.price).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    }
+  }
+    
+  // get totalPrice() {
+  //   if(this.movie) {
+  //     return this.movie.map((item) => item.price).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  //   }
+  // }
+  
+  constructor() { 
+  }
+  
   ngOnInit() {
   }
-
 }

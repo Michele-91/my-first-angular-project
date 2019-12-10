@@ -1,4 +1,8 @@
 <p>{{ underTitle }}</p>
 <app-button (hideShow)="toggleTable($event)"></app-button>
+<app-button2 (hideShow)="toggleTable($event)"></app-button2>
 <app-list [movie]="movieList"></app-list>
 <button (click)="returnToHome()">Homepage</button>
+<h2>{{ str.underString }}</h2>
+<h3>{{ counter.message }}</h3>
+<button (click)="resetCounter()">Reset Counter</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { TableSelect } from 'src/app/services/buttonSelection.service';
 
 @Component({
   selector: 'app-button',
@@ -7,9 +8,18 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-  show = false;
+  get show() {
+    return this.allow.show1;
+  }
 
-  constructor() { }
+  set show(value) {
+    this.allow.show1 = value;
+    if (value) {
+      this.allow.show2 = false;
+    }
+  }
+
+  constructor(public allow: TableSelect) { }
 
   @Output()
   hideShow = new EventEmitter<boolean>();

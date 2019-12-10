@@ -4,7 +4,6 @@ import { UndertitleComponent } from './undertitle/undertitle.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RandomComponent } from './random/random.component';
 import { UndertitleModule } from './undertitle/undertitle.module';
-import { ModHomepageComponent } from './mod-homepage/mod-homepage.component';
 
 const appRoutes: Routes = [
   { path: 'homepage', component: HomepageComponent},

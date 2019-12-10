@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Item } from '../entities/Item';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { UnderStringService } from '../services/underString.service';
+import { VisitCounterService } from '../services/visitCounter.service';
+import { TableSelect } from '../services/buttonSelection.service';
 
 
 @Component({
@@ -14,34 +16,40 @@ export class UndertitleComponent implements OnInit {
   underTitle: string;
   totalPrice: number;
   id: any;
-
-  @Input()
+  title = 'This is the underTitle Page';
+  selectedTable: number;
   movieList: Item[];
 
-
-  constructor(public router: Router, public activatedRoute: ActivatedRoute) {
+  constructor(public router: Router, public str: UnderStringService, public counter: VisitCounterService, public allow: TableSelect) {
 
   }
 
   ngOnInit() {
     this.underTitle = 'Learning how to code with Angular';
-    this.id = this.activatedRoute.snapshot.params.id;
-    // this.id = this.underTitle;
-    // tslint:disable-next-line:max-line-length
-    // this.totalPrice = this.movie.map((item) => item.price).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    this.str.underString = this.title;
   }
 
   toggleTable(show: boolean) {
     if (show) {
-      this.movieList = [new Item({ name: 'Matrix', inStock: false, price: 8.99 }),
-      new Item({ name: 'Inception', inStock: true, price: 12.99 }),
-      new Item({ name: 'Avengers', inStock: true, price: 6.99 })];
+      if (this.allow.show1) {
+        this.movieList = [new Item({ name: 'Matrix', inStock: false, price: 8.99 }),
+        new Item({ name: 'Inception', inStock: true, price: 12.99 }),
+        new Item({ name: 'Avengers', inStock: true, price: 6.99 })];
+      } else {
+        this.movieList = [new Item({ name: 'Iron Man', inStock: true, price: 4.99 }),
+        new Item({ name: '2001 - space odissey', inStock: false, price: 6.99 }),
+        new Item({ name: 'Planet of the Apes', inStock: true, price: 2.99 })]
+      }
     } else {
       this.movieList = [];
     }
   }
 
-  returnToHome(id: any) {
-    this.router.navigate(['/homepage', {id: this.underTitle}]);
+  returnToHome() {
+    this.router.navigate(['/homepage', { id: this.underTitle }]);
+  }
+
+  resetCounter() {
+    this.counter.resetCounter();
   }
 }
