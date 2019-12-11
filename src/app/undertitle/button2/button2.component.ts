@@ -31,7 +31,8 @@ export class Button2Component implements OnInit {
 
   displayTable() {
     this.show = !this.show;
-    this.hideShow.emit(this.show);
+    // this.hideShow.emit(this.show);
+    this.allow.subject.next(this.show);
   }
 
 }

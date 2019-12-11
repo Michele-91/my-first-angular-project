@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UnderStringService } from '../services/underString.service';
 import { VisitCounterService } from '../services/visitCounter.service';
 import { TableSelect } from '../services/buttonSelection.service';
+import { takeUntil } from 'rxjs/operators';
+
 
 
 @Component({
@@ -20,11 +22,15 @@ export class UndertitleComponent implements OnInit {
   selectedTable: number;
   movieList: Item[];
 
-  constructor(public router: Router, public str: UnderStringService, public counter: VisitCounterService, public allow: TableSelect) {
 
+  constructor(public router: Router, 
+              public str: UnderStringService, 
+              public counter: VisitCounterService, 
+              public allow: TableSelect) {
   }
 
   ngOnInit() {
+    this.allow.subject.pipe(takeUntil(this.allow.notifier)).subscribe((show: boolean) => { this.toggleTable(show) });
     this.underTitle = 'Learning how to code with Angular';
     this.str.underString = this.title;
   }
@@ -45,6 +51,7 @@ export class UndertitleComponent implements OnInit {
     }
   }
 
+
   returnToHome() {
     this.router.navigate(['/homepage', { id: this.underTitle }]);
   }
@@ -52,4 +59,9 @@ export class UndertitleComponent implements OnInit {
   resetCounter() {
     this.counter.resetCounter();
   }
+
+  ngOnDestroy(): void {
+    this.allow.notifier.next();
+  }
+
 }

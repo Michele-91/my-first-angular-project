@@ -19,17 +19,17 @@ export class ButtonComponent implements OnInit {
     }
   }
 
-  constructor(public allow: TableSelect) { }
+  constructor(public allow: TableSelect) {
+  }
 
-  @Output()
-  hideShow = new EventEmitter<boolean>();
 
   ngOnInit() {
+    
   }
 
   displayTable() {
     this.show = !this.show;
-    this.hideShow.emit(this.show);
+    // this.hideShow.emit(this.show);
+    this.allow.subject.next(this.show);
   }
-
 }
