@@ -7,7 +7,6 @@ import { Component, OnInit, Output } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title: string;
-  // movieList: Item[];
 
   constructor() {
   }

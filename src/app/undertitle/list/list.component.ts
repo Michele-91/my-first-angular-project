@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 
 import { Item } from '../../entities/Item';
+import { TableSelect } from 'src/app/services/buttonSelection.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -9,31 +11,36 @@ import { Item } from '../../entities/Item';
 })
 export class ListComponent implements OnInit {
 
-  private _movie: Item[];
+  movies: Item[];
 
   totalPrice: number;
 
-  get movie(): Item[] {
-    return this._movie;
-  }
-  
-  @Input()
-  set movie(value: Item[]) {
-    this._movie = value;
-    if(value) {
-      this.totalPrice = this.movie.map((item) => item.price).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    }
-  }
-    
-  // get totalPrice() {
-  //   if(this.movie) {
-  //     return this.movie.map((item) => item.price).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  // get movie(): Item[] {
+  //   return this._movie;
+  // }
+
+  // @Input()
+  // set movie(value: Item[]) {
+  //   this._movie = value;
+  //   if(value) {
+  //     this.totalPrice = this.movie.map((item) => item.price).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   //   }
   // }
-  
-  constructor() { 
+
+
+  constructor(public allow: TableSelect) { 
   }
-  
+
+
   ngOnInit() {
+    this.allow.movieList.subscribe( (list: Item[]) => {
+      this.movies = list;
+      if(list) {
+        this.totalPrice = list.map((item) => item.price).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+      } else {
+        this.totalPrice = 0;
+      }
+    });
   }
+
 }

@@ -1,0 +1,17 @@
+
+<form [formGroup]="tableForm">
+    <label for="">Name:</label>
+    <input type="text" formControlName="name" minlength="3" required>
+    <label for="">In Stock:</label>
+    <input type="text" formControlName="inStock">
+    <label for="">Price:</label>
+    <input type="number" formControlName="price" required>
+    <label for="">Date:</label>
+    <input type="date" formControlName="date" required>
+    <button type="button" [disabled]="!tableForm.valid" (click)="onSubmit()">Save</button>
+</form>
+<hr>
+<!-- <label for="">in Stock:</label>
+<input type="text" [(ngModel)]="testControl">
+<label for="">Price:</label>
+<input type="text" [(ngModel)]="testControl"> -->

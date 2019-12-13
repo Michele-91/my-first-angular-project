@@ -18,9 +18,6 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params.id;
     this.str.underString = this.title;
-  //   setInterval(() => {
-  //     this.counter.count++;
-  // }, 1000);
   }
 
   resetCounter() {
