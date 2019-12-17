@@ -15,7 +15,7 @@ export class FormComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     inStock: new FormControl(''),
     price: new FormControl('', [Validators.min(1), Validators.required]),
-    date: new FormControl()
+    date: new FormControl('')
   });
 
   @Output()

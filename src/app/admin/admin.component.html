@@ -1,0 +1,18 @@
+<h2>Admin Page</h2>
+<p>{{message}}</p>
+<!-- <div>
+    <p appHighlight [highlightColor]="color">Only the Admin can see this secret text!</p>
+</div> -->
+<p class="pick">Pick a highlight color</p>
+<div class="choices">
+  <input type="radio" name="colors" (click)="color='lightgreen'">green
+  <input type="radio" name="colors" (click)="color='yellow'">yellow
+  <input type="radio" name="colors" (click)="color='cyan'">cyan
+</div>
+<p appHighlight [highlightColor]="color" defaultColor="violet">Only the Admin can see this secret text!</p>
+<br>
+<h1 *appNot="true">True</h1><h1 *appNot="false">False</h1>
+<!-- <p [appHighlight]="color">Highlight me!</p> -->
+<div>
+    <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+</div>

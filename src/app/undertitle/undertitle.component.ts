@@ -6,6 +6,9 @@ import { VisitCounterService } from '../services/visitCounter.service';
 import { TableSelect } from '../services/buttonSelection.service';
 import { takeUntil } from 'rxjs/operators';
 
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ListComponent } from './list/list.component';
+
 
 
 @Component({
@@ -14,6 +17,8 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./undertitle.component.css']
 })
 export class UndertitleComponent implements OnInit, OnDestroy {
+
+  bsModalRef: BsModalRef;
 
   underTitle: string;
   id: any;
@@ -31,12 +36,19 @@ export class UndertitleComponent implements OnInit, OnDestroy {
     new Item({ name: 'Planet of the Apes', inStock: true, price: 2.99, date: new Date(1978, 11, 23)})
   ];
 
+  openModalWithComponent() {
+    this.bsModalRef = this.modalService.show(ListComponent);
+  }
+
 
   constructor(public router: Router,
               public str: UnderStringService,
               public counter: VisitCounterService,
-              public allow: TableSelect) {
+              public allow: TableSelect,
+              public modalService: BsModalService) {
   }
+
+
 
   ngOnInit() {
     this.allow.subject.pipe(takeUntil(this.allow.notifier)).subscribe((show: boolean) => { this.toggleTable(show); });
@@ -48,11 +60,15 @@ export class UndertitleComponent implements OnInit, OnDestroy {
   toggleTable(show: boolean) {
     if (show) {
       if (this.allow.show1) {
+        this.openModalWithComponent();
         this.allow.movieList.next([...this.movieList1, ...this.customList]);
       } else {
         // this.allow.movieList.next(this.movieList);
+        this.openModalWithComponent();
         this.allow.movieList.next([...this.movieList2, ...this.customList]);
       }
+      // this.bsModalRef = this.modalService.show(ListComponent, {});
+      // this.bsModalRef.content.closeBtnName = 'Close';
     } else {
       // this.movieList = [];
       this.allow.movieList.next();

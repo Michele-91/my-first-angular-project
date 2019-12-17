@@ -8,22 +8,32 @@ import { RandomComponent } from './random/random.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule } from '@angular/forms';
-// import { FormComponent } from './undertitle/form/form.component';
+
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './auth/login/login.component';
+import { HighlightDirective } from './highlight.directive';
+import { NotDirective } from './not.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     RandomComponent,
-    MenuComponent
+    MenuComponent,
+    AdminComponent,
+    LoginComponent,
+    HighlightDirective,
+    NotDirective
   ],
   imports: [
     BrowserModule,
     UndertitleModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot(),
   ],
-  providers: [],
+  providers: [BsModalRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

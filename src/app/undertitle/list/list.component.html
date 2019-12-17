@@ -1,4 +1,33 @@
-<ul>
-    <li *ngFor="let item of movies">{{ item?.name }} {{ item?.inStock }} {{ item?.price }} {{item?.date | date:'MM/dd/yyyy' }}</li>
+<!-- <div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div> -->
+
+
+
+<!-- <ul>
+    <li *ngFor="let item of movies">{{ item?.name }} {{ item?.inStock }} {{ item?.price }}
+        {{item?.date | date:'MM/dd/yyyy' }}</li>
 </ul>
-<div *ngIf="totalPrice && totalPrice > 5">{{totalPrice | number: '1.0-2'}}</div>
+<div *ngIf="totalPrice && totalPrice > 5">{{totalPrice | number: '1.0-2'}}</div> -->
+
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Titolo</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div>
+        <ul>
+            <li *ngFor="let item of movies">{{ item?.name }} {{ item?.inStock }} {{ item?.price }}
+                {{item?.date | date:'MM/dd/yyyy' }}</li>
+        </ul>
+        <div *ngIf="totalPrice && totalPrice > 5">{{totalPrice | number: '1.0-2' | conditionPipe:15 }}</div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="close()">Close</button>
+</div>
